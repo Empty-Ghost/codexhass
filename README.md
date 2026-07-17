@@ -62,8 +62,32 @@ git remote add origin https://github.com/<your-user>/<your-repo>.git
 5. Start the add-on and open it from the sidebar.
 6. Run `codex login` in the terminal. Your login will persist in `/data/home/.codex`.
 
+## Updates
+
+Home Assistant checks the added repository for a newer add-on `version`. When an update is
+published, refresh the Add-on Store (or wait for its periodic refresh), open Codex Terminal,
+and choose **Update**. The persistent `/data` volume, including Codex authentication and the
+workspace, is retained across add-on updates.
+
+The add-on ships with a pinned stable Codex CLI version for reproducible installs. To update
+Codex immediately without waiting for a new add-on release, run this inside the terminal:
+
+```bash
+npm install -g @openai/codex@latest
+codex --version
+```
+
+That user-installed version is stored under `/data/home/.npm-global`, takes precedence over
+the image copy, and therefore also survives add-on updates. To return to the version shipped
+by the add-on, remove the persistent override with:
+
+```bash
+npm uninstall -g @openai/codex
+```
+
 ## Notes
 
 - The add-on is built from source by Home Assistant because `config.yaml` intentionally omits an `image` field.
+- The build uses a pinned Home Assistant base image and pinned stable tool versions so the same add-on version remains reproducible.
 - The current Codex CLI package publishes Linux binaries for `amd64` and `aarch64`, so the add-on is limited to those Home Assistant architectures.
 - The `zsh` and `tmux` defaults are adapted from the owner's dotfiles and vendored into this repository so the add-on does not need GitHub credentials at runtime.

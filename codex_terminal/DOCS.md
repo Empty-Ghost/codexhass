@@ -52,6 +52,22 @@ The add-on starts in a persistent tmux session called `workspace`.
 3. Run `codex login`.
 4. Work inside `/data/workspace` if you want your files to persist.
 
+## Updating
+
+Home Assistant offers an update after the repository publishes a higher add-on version.
+Updating replaces the container image but preserves `/data`, including authentication,
+shell configuration, npm-installed tools, and workspace files.
+
+To update Codex independently and keep that version across add-on updates, run:
+
+```bash
+npm install -g @openai/codex@latest
+codex --version
+```
+
+The persistent install takes precedence over the image copy. Run
+`npm uninstall -g @openai/codex` to use the version shipped with the add-on again.
+
 ## Notes
 
 - This add-on is intentionally source-built by Home Assistant from this repository.

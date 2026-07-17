@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+- Updated the bundled OpenAI Codex CLI to stable version 0.144.5
+- Switched to the pinned Home Assistant base image 3.24-2026.06.1
+- Pinned shell framework and plugin sources instead of following moving branches
+- Added Home Assistant image metadata for source builds
+- Documented Home Assistant add-on updates and persistent in-terminal Codex updates
+
 ## 0.1.3
 
 - Added `zsh`, `oh-my-zsh`, and `tmux`
